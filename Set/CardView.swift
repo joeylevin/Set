@@ -12,32 +12,34 @@ struct CardView: View {
     let card: Card
     
     var body: some View {
-        ZStack {
-            let base = RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                base.strokeBorder(lineWidth: Constants.lineWidth)
-                .background(base.fill(card.color))
-                .overlay(
-                    HStack {
-                        ForEach(0..<card.number) { _ in
-                            Text(card.shape)
-                        }
-                    }
-                )
-        }
+        Diamond(amount: card.number)
+            .foregroundColor(card.color)
+            .padding(Constants.shape.padding)
+            .overlay(
+                Text(card.shape)
+                    .font(.system(size: 20))
+                    .minimumScaleFactor(1)
+                    .multilineTextAlignment(.center)
+                    .aspectRatio(1, contentMode: .fit)
+            )
+            .cardify(color: card.color, shading: card.shape, amount: card.number )
     }
     
     private struct Constants {
         static let cornerRadius: CGFloat = 12
         static let lineWidth: CGFloat = 2
+        struct shape {
+            static let padding: CGFloat = 10
+        }
     }
     
 }
 
 #Preview {
     HStack {
-        CardView(card: CardView.Card(color: Color.blue, shape: "test", number: 5, shading: 1, id: "123"))
+        CardView(card: CardView.Card(color: Color.blue, shape: "circle", number: 3, shading: 1, id: "123"))
             .padding()
-        CardView(card: CardView.Card(color: Color.blue, shape: "test", number: 5, shading: 2, id: "123"))
+        CardView(card: CardView.Card(color: Color.blue, shape: "test", number: 2, shading: 2, id: "123"))
             .padding()
     }
 }
