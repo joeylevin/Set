@@ -22,6 +22,9 @@ struct SetGameView: View {
                     viewModel.newGame()
                 }
                 Spacer()
+                Button("Deal 3 More Cards") {
+                    viewModel.moreCards()
+                }
             }
         }
         .padding()

@@ -10,9 +10,11 @@ import SwiftUI
 
 struct SetModel {
     private(set) var cards: Array<Card>
+    var cardCount: Int
     
     init(cardContentFactory: (Int, Int, Int, Int) -> Card) {
         cards = []
+        cardCount = 12
         for colorIndex in 0..<3 {
             for shapeIndex in 0..<3 {
                 for numberIndex in 0..<3 {

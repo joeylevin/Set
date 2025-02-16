@@ -24,7 +24,7 @@ class SetViewModel: ObservableObject {
     @Published private var model : SetModel
     
     var cards: Array<Card> {
-        return model.cards
+        return Array(model.cards.prefix(model.cardCount))
     }
     
     var theme: ThemeChooser.Theme {
@@ -37,5 +37,9 @@ class SetViewModel: ObservableObject {
     
     func choose(_ card: Card) {
         return
+    }
+    
+    func moreCards() {
+        model.cardCount += 3
     }
 }
