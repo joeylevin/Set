@@ -22,7 +22,8 @@ struct CardView: View {
                     .multilineTextAlignment(.center)
                     .aspectRatio(1, contentMode: .fit)
             )
-            .cardify(color: card.color, shading: card.shape, amount: card.number )
+            .cardify(card)
+            
     }
     
     private struct Constants {

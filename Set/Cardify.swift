@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct Cardify: ViewModifier {
-    let color: Color
-    let shading: String
-    let amount: Int
+    typealias Card = SetModel.Card
+    let card: Card
 
     func body(content: Content) -> some View {
+        let borderColor = card.isMatched.map { $0 ? Color.green : Color.red } ?? (card.isSelected ? Color.yellow : Color.black)
         ZStack {
             let base = RoundedRectangle(cornerRadius: Constants.cornerRadius)
-            base.strokeBorder(lineWidth: Constants.lineWidth)
+            base.strokeBorder(borderColor, lineWidth: Constants.lineWidth)
                 .background(base.fill(.white))
                 .overlay(content)
         }
@@ -29,7 +29,7 @@ struct Cardify: ViewModifier {
 }
 
 extension View {
-    func cardify(color: Color, shading: String, amount: Int) -> some View {
-        modifier(Cardify(color: color, shading: shading, amount: amount ))
+    func cardify(_ card: SetModel.Card) -> some View {
+        modifier(Cardify(card: card))
     }
 }
