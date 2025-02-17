@@ -36,7 +36,7 @@ class SetViewModel: ObservableObject {
     }
     
     func choose(_ card: Card) {
-        return
+        model.choose(card)
     }
     
     func moreCards() {
