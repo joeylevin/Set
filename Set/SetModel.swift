@@ -104,6 +104,13 @@ struct SetModel {
                     }
                 }
             }
+            else {
+                if var selected = selectedCards, selected.contains(chosenIndex) {
+                    // Deselecting
+                    cards[chosenIndex].isSelected = false
+                    return
+                }
+            }
             cards[chosenIndex].isSelected = true
         }
     }
